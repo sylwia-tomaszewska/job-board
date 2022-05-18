@@ -7,6 +7,14 @@ const Container = styled.section`
   margin: 0 auto;
 `;
 
+const BoxContainer = styled(Container)`
+  display: grid;
+  gap: 1rem;
+  :first-of-type {
+    margin-top: 1rem;
+  }
+`;
+
 const TopBar = styled.div`
   display: flex;
   background: ${({ theme }) => theme.colors.prim} url('/img/bg-header-desktop.svg') center no-repeat;
@@ -17,20 +25,24 @@ const TopBar = styled.div`
 const Box = styled.div`
   display: grid;
   grid-template-columns: 4rem 1fr;
-`;
-
-const BoxImg = styled(Image)`
-  background: no-repeat center;
-  background-size: cover;
-  width: 6rem;
-  height: 6rem;
-`;
-
-const BoxContent = styled.div`
+  gap: 1rem;
   padding: 1rem;
   background: ${({ theme }) => theme.colors.light};
   border-radius: 0.5rem;
   box-shadow: ${({ theme }) => theme.shadows.md};
+`;
+
+const BoxImg = styled.img`
+  background: no-repeat center;
+  background-size: cover;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid ${({ theme }) => theme.colors.lighter};
+  border-radius: 50%;
+`;
+
+const BoxContent = styled.div`
+  display: grid;
 `;
 
 const BoxTop = styled.div``;
@@ -39,4 +51,4 @@ const BoxTitle = styled.div``;
 
 const BoxDetails = styled.div``;
 
-export { Container, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxTitle, BoxDetails };
+export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxTitle, BoxDetails };
