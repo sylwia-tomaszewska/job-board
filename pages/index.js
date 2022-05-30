@@ -4,7 +4,7 @@ import { theme } from '../styles/theme';
 import GlobalStyle from '../styles/Global.styles';
 import { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxTitle, BoxDetails } from '../styles/Components.styles';
 
-export default function Home({ api, formattedDate, jobs }) {
+export default function Home({ jobs }) {
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -15,25 +15,6 @@ export default function Home({ api, formattedDate, jobs }) {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <TopBar />
-        {jobs[1].company}
-        {/* <BoxContainer>
-          {jobs &&
-            jobs.map((job) => (
-              <Box key={job.id}>
-                <BoxImg layout='fixed' src={api + job.attributes.Logo.data.attributes.url} objectFit='cover' width='6rem' height='6rem' />
-                <BoxContent>
-                  <BoxTop>{job.attributes.Company}</BoxTop>
-                  <BoxTitle>{job.attributes.JobTitle}</BoxTitle>
-                  <BoxTitle></BoxTitle>
-                  <BoxDetails>
-                    <span>{formattedDate}</span>
-                    <span>{job.attributes.Type}</span>
-                    <span>{job.attributes.Location}</span>
-                  </BoxDetails>
-                </BoxContent>
-              </Box>
-            ))}
-        </BoxContainer> */}
         <BoxContainer>
           {jobs &&
             jobs.map((job) => (
@@ -89,7 +70,7 @@ export async function getStaticProps() {
   //   };
 
   const toLocaleTime = (data) => {
-    if (Date.parse(data) == true) {
+    if (Date.parse(data)) {
       const date = new Date(data);
       let localeTime = date.toLocaleString('pl-PL');
       return localeTime;
@@ -101,14 +82,14 @@ export async function getStaticProps() {
   const spread = (data) => {
     if (data) {
       if (data.attributes) {
+        let attr = Object.fromEntries(Object.entries({ ...data.attributes }).map((entry) => [entry[0], toLocaleTime(entry[1])]));
         let logo = { ...data.attributes.logo.data };
-        let pubDate = toLocaleTime(data.attributes.publishedAt);
 
         const spreadData = {
           id: data.id,
-          ...data.attributes,
-          publishedAt: pubDate,
+          ...attr,
         };
+
         if (data.attributes.logo.data) {
           return {
             ...spreadData,
@@ -117,7 +98,7 @@ export async function getStaticProps() {
         } else {
           return {
             ...spreadData,
-            logo: { url: 'https://dssconf.pl/i/dss-logo.d5965ea8.svg' },
+            logo: { url: 'https://gravatar.com/avatar/c53aaf0bcbc4dd7b9341ab5a6fa1d7b2?s=400&d=robohash&r=x' },
           };
         }
         // if (data.attributes.logo.data) {
@@ -142,7 +123,6 @@ export async function getStaticProps() {
   };
 
   const restructure = (data) => {
-    console.log('Data', data);
     // for (let key in data) {
     //   console.log('Key', key);
     //   if (Object.hasOwnProperty.call(data, key)) {
