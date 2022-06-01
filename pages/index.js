@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import GlobalStyle from '../styles/Global.styles';
-import { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxTitle, BoxDetails } from '../styles/Components.styles';
+import { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxColumn, BoxTop, BoxTag, BoxTitle, BoxDetails } from '../styles/Components.styles';
 
 export default function Home({ jobs }) {
   return (
@@ -21,14 +21,20 @@ export default function Home({ jobs }) {
               <Box key={job.id}>
                 <BoxImg layout='fixed' src={job.logo.url} objectFit='cover' width='6rem' height='6rem' />
                 <BoxContent>
-                  <BoxTop>{job.company}</BoxTop>
-                  <BoxTitle>{job.jobTitle}</BoxTitle>
-                  <BoxTitle></BoxTitle>
-                  <BoxDetails>
-                    <span>{job.publishedAt}</span>
-                    <span>{job.type}</span>
-                    <span>{job.location}</span>
-                  </BoxDetails>
+                  <BoxColumn>
+                    <BoxTop>{job.company}</BoxTop>
+                    <BoxTitle>{job.jobTitle}</BoxTitle>
+                    <BoxDetails>
+                      <span>{job.publishedAt}</span>
+                      <span>{job.type}</span>
+                      <span>{job.location}</span>
+                    </BoxDetails>
+                  </BoxColumn>
+                  <BoxColumn>
+                    {job.technology.map((tag, index) => (
+                      <BoxTag key={index}>{tag}</BoxTag>
+                    ))}
+                  </BoxColumn>
                 </BoxContent>
               </Box>
             ))}
@@ -79,6 +85,13 @@ export async function getStaticProps() {
     }
   };
 
+  const splitTags = (txt) => {
+    if (txt) {
+      let tagArray = txt.split(',');
+      return tagArray;
+    }
+  };
+
   const spread = (data) => {
     if (data) {
       if (data.attributes) {
@@ -88,8 +101,8 @@ export async function getStaticProps() {
         const spreadData = {
           id: data.id,
           ...attr,
+          technology: splitTags(data.attributes.technology),
         };
-
         if (data.attributes.logo.data) {
           return {
             ...spreadData,
@@ -101,6 +114,7 @@ export async function getStaticProps() {
             logo: { url: 'https://gravatar.com/avatar/c53aaf0bcbc4dd7b9341ab5a6fa1d7b2?s=400&d=robohash&r=x' },
           };
         }
+
         // if (data.attributes.logo.data) {
         //   return {
         //     id: data.id,

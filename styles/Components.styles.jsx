@@ -45,10 +45,28 @@ const BoxContent = styled.div`
   display: grid;
 `;
 
-const BoxTop = styled.div``;
+const BoxColumn = styled.div``;
 
-const BoxTitle = styled.div``;
+const BoxTop = styled.div`
+  color: ${({ theme }) => theme.colors.prim};
+  font-size: ${({ theme }) => theme.fonts.sm};
+  font-weight: bold;
+`;
+
+const BoxTag = styled.span`
+  padding: 0.25em 0.5em;
+  background: ${({ theme }) => theme.colors.prim};
+  border-radius: 2em;
+  color: ${({ theme }) => theme.colors.light};
+  font-size: ${({ theme }) => theme.fonts.sm};
+  text-transform: uppercase;
+`;
+
+const BoxTitle = styled.div`
+  color: ${({ theme }) => theme.colors.prim};
+  font-weight: bold;
+`;
 
 const BoxDetails = styled.div``;
 
-export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxTitle, BoxDetails };
+export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxColumn, BoxTop, BoxTag, BoxTitle, BoxDetails };
