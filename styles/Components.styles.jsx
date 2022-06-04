@@ -48,15 +48,20 @@ const BoxContent = styled.div`
 const BoxColumn = styled.div``;
 
 const BoxTop = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.5rem;
+  align-items: center;
+  max-width: max-content;
   color: ${({ theme }) => theme.colors.prim};
   font-size: ${({ theme }) => theme.fonts.sm};
   font-weight: bold;
 `;
 
 const BoxTag = styled.span`
-  padding: 0.25em 0.5em;
+  padding: 0.5em 0.75em 0.25em;
   background: ${({ theme }) => theme.colors.prim};
-  border-radius: 2em;
+  border-radius: 0.25em;
   color: ${({ theme }) => theme.colors.light};
   font-size: ${({ theme }) => theme.fonts.sm};
   text-transform: uppercase;
@@ -67,6 +72,17 @@ const BoxTitle = styled.div`
   font-weight: bold;
 `;
 
+const BoxFeature = styled.span`
+  padding: 0.5em 0.75em 0.25em;
+  background: ${(props) => (props.new ? props.theme.colors.prim : props.theme.colors.dark)};
+  border-radius: 2em;
+  color: ${({ theme }) => theme.colors.light};
+  font-size: ${({ theme }) => theme.fonts.xs};
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 1;
+`;
+
 const BoxDetails = styled.div``;
 
-export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxColumn, BoxTop, BoxTag, BoxTitle, BoxDetails };
+export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxColumn, BoxTop, BoxTag, BoxTitle, BoxFeature, BoxDetails };

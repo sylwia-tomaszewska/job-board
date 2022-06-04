@@ -2,7 +2,20 @@ import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import GlobalStyle from '../styles/Global.styles';
-import { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxColumn, BoxTop, BoxTag, BoxTitle, BoxDetails } from '../styles/Components.styles';
+import {
+  Container,
+  BoxContainer,
+  TopBar,
+  Box,
+  BoxImg,
+  BoxContent,
+  BoxColumn,
+  BoxTop,
+  BoxTag,
+  BoxTitle,
+  BoxFeature,
+  BoxDetails,
+} from '../styles/Components.styles';
 
 export default function Home({ jobs }) {
   return (
@@ -22,7 +35,11 @@ export default function Home({ jobs }) {
                 <BoxImg layout='fixed' src={job.logo.url} objectFit='cover' width='6rem' height='6rem' />
                 <BoxContent>
                   <BoxColumn>
-                    <BoxTop>{job.company}</BoxTop>
+                    <BoxTop>
+                      {job.company}
+                      {job.new && <BoxFeature new>New!</BoxFeature>}
+                      {job.highlighted && <BoxFeature highlighted>Highlighted</BoxFeature>}
+                    </BoxTop>
                     <BoxTitle>{job.jobTitle}</BoxTitle>
                     <BoxDetails>
                       <span>{job.publishedAt}</span>

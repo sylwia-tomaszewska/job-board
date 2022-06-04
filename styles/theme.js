@@ -14,6 +14,7 @@ export const theme = {
     h4: '1.69rem',
     h5: '1.3rem',
     sm: '0.8rem',
+    xs: '0.64rem',
     md: '1rem',
   },
   lines: {
