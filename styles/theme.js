@@ -7,7 +7,7 @@ export const theme = {
     sec: 'hsl(180, 52%, 96%)',
   },
   fonts: {
-    prim: `'League Spartan', sans-serif`,
+    prim: `'Plus Jakarta Sans', sans-serif`,
     h1: '3.713rem',
     h2: '2.856rem',
     h3: '2.197rem',

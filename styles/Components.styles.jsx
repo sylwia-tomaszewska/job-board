@@ -51,14 +51,22 @@ const BoxTop = styled.div`
   gap: 0.5rem;
   align-items: center;
   max-width: max-content;
+  padding: 0.5rem 0;
   color: ${({ theme }) => theme.colors.prim};
   font-size: ${({ theme }) => theme.fonts.sm};
   font-weight: bold;
 `;
 
-const BoxMain = styled.div``;
+const BoxMain = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
 
-const BoxMainColumn = styled.div``;
+const BoxMainTitle = styled.div``;
+
+const BoxMainTags = styled.div`
+  margin: -0.25rem;
+`;
 
 const BoxTitle = styled.div`
   color: ${({ theme }) => theme.colors.prim};
@@ -66,25 +74,29 @@ const BoxTitle = styled.div`
 `;
 
 const BoxFeature = styled.span`
-  padding: 0.5em 0.75em 0.25em;
+  display: inline-block;
+  padding: 0.25em 0.75em;
   background: ${(props) => (props.new ? props.theme.colors.prim : props.theme.colors.dark)};
   border-radius: 2em;
   color: ${({ theme }) => theme.colors.light};
   font-size: ${({ theme }) => theme.fonts.xs};
   font-weight: normal;
   text-transform: uppercase;
-  line-height: 1;
 `;
 
-const BoxDetails = styled.div``;
+const BoxDetails = styled.div`
+  font-size: ${({ theme }) => theme.fonts.sm};
+`;
 
 const BoxTag = styled.span`
-  padding: 0.5em 0.75em 0.25em;
+  display: inline-block;
+  margin: 0.25rem;
+  padding: 0.25em 0.75em;
   background: ${({ theme }) => theme.colors.prim};
   border-radius: 0.25em;
   color: ${({ theme }) => theme.colors.light};
-  font-size: ${({ theme }) => theme.fonts.sm};
+  font-size: ${({ theme }) => theme.fonts.xs};
   text-transform: uppercase;
 `;
 
-export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxMain, BoxMainColumn, BoxTag, BoxTitle, BoxFeature, BoxDetails };
+export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxMain, BoxMainTitle, BoxMainTags, BoxTag, BoxTitle, BoxFeature, BoxDetails };

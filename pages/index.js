@@ -11,7 +11,8 @@ import {
   BoxContent,
   BoxTop,
   BoxMain,
-  BoxMainColumn,
+  BoxMainTitle,
+  BoxMainTags,
   BoxTag,
   BoxTitle,
   BoxFeature,
@@ -41,19 +42,19 @@ export default function Home({ jobs }) {
                     {job.highlighted && <BoxFeature highlighted>Highlighted</BoxFeature>}
                   </BoxTop>
                   <BoxMain>
-                    <BoxMainColumn>
+                    <BoxMainTitle>
                       <BoxTitle>{job.jobTitle}</BoxTitle>
                       <BoxDetails>
                         <span>{job.publishedAt}</span>
                         <span>{job.type}</span>
                         <span>{job.location}</span>
                       </BoxDetails>
-                    </BoxMainColumn>
-                    <BoxMainColumn>
+                    </BoxMainTitle>
+                    <BoxMainTags>
                       {job.technology.map((tag, index) => (
                         <BoxTag key={index}>{tag}</BoxTag>
                       ))}
-                    </BoxMainColumn>
+                    </BoxMainTags>
                   </BoxMain>
                 </BoxContent>
               </Box>
