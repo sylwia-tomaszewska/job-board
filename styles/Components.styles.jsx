@@ -45,8 +45,6 @@ const BoxContent = styled.div`
   display: grid;
 `;
 
-const BoxColumn = styled.div``;
-
 const BoxTop = styled.div`
   display: grid;
   grid-auto-flow: column;
@@ -58,14 +56,9 @@ const BoxTop = styled.div`
   font-weight: bold;
 `;
 
-const BoxTag = styled.span`
-  padding: 0.5em 0.75em 0.25em;
-  background: ${({ theme }) => theme.colors.prim};
-  border-radius: 0.25em;
-  color: ${({ theme }) => theme.colors.light};
-  font-size: ${({ theme }) => theme.fonts.sm};
-  text-transform: uppercase;
-`;
+const BoxMain = styled.div``;
+
+const BoxMainColumn = styled.div``;
 
 const BoxTitle = styled.div`
   color: ${({ theme }) => theme.colors.prim};
@@ -85,4 +78,13 @@ const BoxFeature = styled.span`
 
 const BoxDetails = styled.div``;
 
-export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxColumn, BoxTop, BoxTag, BoxTitle, BoxFeature, BoxDetails };
+const BoxTag = styled.span`
+  padding: 0.5em 0.75em 0.25em;
+  background: ${({ theme }) => theme.colors.prim};
+  border-radius: 0.25em;
+  color: ${({ theme }) => theme.colors.light};
+  font-size: ${({ theme }) => theme.fonts.sm};
+  text-transform: uppercase;
+`;
+
+export { Container, BoxContainer, TopBar, Box, BoxImg, BoxContent, BoxTop, BoxMain, BoxMainColumn, BoxTag, BoxTitle, BoxFeature, BoxDetails };

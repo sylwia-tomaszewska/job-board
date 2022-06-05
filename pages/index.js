@@ -9,8 +9,9 @@ import {
   Box,
   BoxImg,
   BoxContent,
-  BoxColumn,
   BoxTop,
+  BoxMain,
+  BoxMainColumn,
   BoxTag,
   BoxTitle,
   BoxFeature,
@@ -34,24 +35,26 @@ export default function Home({ jobs }) {
               <Box key={job.id}>
                 <BoxImg layout='fixed' src={job.logo.url} objectFit='cover' width='6rem' height='6rem' />
                 <BoxContent>
-                  <BoxColumn>
-                    <BoxTop>
-                      {job.company}
-                      {job.new && <BoxFeature new>New!</BoxFeature>}
-                      {job.highlighted && <BoxFeature highlighted>Highlighted</BoxFeature>}
-                    </BoxTop>
-                    <BoxTitle>{job.jobTitle}</BoxTitle>
-                    <BoxDetails>
-                      <span>{job.publishedAt}</span>
-                      <span>{job.type}</span>
-                      <span>{job.location}</span>
-                    </BoxDetails>
-                  </BoxColumn>
-                  <BoxColumn>
-                    {job.technology.map((tag, index) => (
-                      <BoxTag key={index}>{tag}</BoxTag>
-                    ))}
-                  </BoxColumn>
+                  <BoxTop>
+                    {job.company}
+                    {job.new && <BoxFeature new>New!</BoxFeature>}
+                    {job.highlighted && <BoxFeature highlighted>Highlighted</BoxFeature>}
+                  </BoxTop>
+                  <BoxMain>
+                    <BoxMainColumn>
+                      <BoxTitle>{job.jobTitle}</BoxTitle>
+                      <BoxDetails>
+                        <span>{job.publishedAt}</span>
+                        <span>{job.type}</span>
+                        <span>{job.location}</span>
+                      </BoxDetails>
+                    </BoxMainColumn>
+                    <BoxMainColumn>
+                      {job.technology.map((tag, index) => (
+                        <BoxTag key={index}>{tag}</BoxTag>
+                      ))}
+                    </BoxMainColumn>
+                  </BoxMain>
                 </BoxContent>
               </Box>
             ))}
@@ -167,12 +170,16 @@ export async function getStaticProps() {
     //   console.log('Rest', spread(elem));
     //   return spread(elem);
     // });
-    const element = data.map((elem) => spread(elem));
-    return element;
+    if (data) {
+      const element = data.map((elem) => spread(elem));
+      return element;
+    } else {
+      return null;
+    }
   };
 
   const jobs = restructure(dataJobs);
-  console.log('restructre:', jobs);
+  //   console.log('restructre:', jobs);
 
   return {
     props: { api, jobs },
