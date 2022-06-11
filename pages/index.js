@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../styles/theme';
 import GlobalStyle from '../styles/Global.styles';
@@ -20,6 +21,19 @@ import {
 } from '../styles/Components.styles';
 
 export default function Home({ jobs }) {
+  const [technology, setTechnology] = useState();
+
+  const filterByTechnology = (data, tech) => {
+    data.forEach((elem) => {
+      if (elem.technology.includes(tech)) {
+        console.log('działa');
+        setTechnology(elem.company);
+      } else {
+        return null;
+      }
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -30,6 +44,8 @@ export default function Home({ jobs }) {
           <link rel='icon' href='/favicon.ico' />
         </Head>
         <TopBar />
+        {jobs && jobs.map((job) => job.technology && job.technology.map((tech) => <button onClick={(e) => filterByTechnology(jobs, tech)}>{tech}</button>))}
+        <p>{technology}</p>
         <BoxContainer>
           {jobs &&
             jobs.map((job) => (

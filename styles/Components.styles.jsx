@@ -26,6 +26,7 @@ const Box = styled.div`
   display: grid;
   grid-template-columns: 4rem 1fr;
   gap: 1rem;
+  align-items: center;
   padding: 1rem;
   background: ${({ theme }) => theme.colors.light};
   border-radius: 0.5rem;
@@ -85,6 +86,7 @@ const BoxFeature = styled.span`
 `;
 
 const BoxDetails = styled.div`
+  padding-top: 0.25rem;
   font-size: ${({ theme }) => theme.fonts.sm};
 `;
 
